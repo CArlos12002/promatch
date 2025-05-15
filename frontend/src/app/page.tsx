@@ -8,7 +8,6 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   
@@ -32,7 +31,7 @@ export default function Home() {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, []);  
 
   const testimonials = [
     {
@@ -541,7 +540,7 @@ export default function Home() {
                     </div>
                   </motion.div>
                   <blockquote className="text-xl text-gray-700 mb-6">
-                    "{testimonials[currentTestimonial].content}"
+                    &quot;{testimonials[currentTestimonial].content}&quot;
                   </blockquote>
                   <div>
                     <div className="font-bold text-gray-800">{testimonials[currentTestimonial].name}</div>
