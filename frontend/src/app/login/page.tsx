@@ -17,29 +17,7 @@ export default function LoginPage() {
   const router = useRouter();
   const recaptchaVerifierRef = useRef<RecaptchaVerifier | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Inicializar reCAPTCHA
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        recaptchaVerifierRef.current = new RecaptchaVerifier(
-          'recaptcha-container', 
-          {
-            size: 'invisible',
-            callback: () => console.log("reCAPTCHA verificado"),
-            'expired-callback': () => {
-              setError('Tiempo de verificación agotado. Recarga la página.');
-              window.location.reload();
-            }
-          }, 
-          auth
-        );
-      } catch (error) {
-        console.error("Error al inicializar reCAPTCHA:", error);
-        setError("Error al cargar el sistema de seguridad. Recarga la página.");
-      }
-    }
-
+  
     return () => {
       if (recaptchaVerifierRef.current) {
         recaptchaVerifierRef.current.clear();
